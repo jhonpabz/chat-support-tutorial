@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* Palette, radii and system type follow the product's own admin app. Light/dark values
+   live in CSS variables so the whole page (and the SVG diagram) re-themes at once:
+   system preference by default, overridden by html[data-theme]. */
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --surface-3: #e2e8f0;
+  --text: #0f172a;
+  --muted: #475569;
+  --subtle: #5b6b80;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --primary: #0369a1;
+  --primary-strong: #075985;
+  --primary-soft: #e0f2fe;
+  --primary-border: #bae6fd;
+  --on-primary: #ffffff;
+  --success: #059669;
+  --success-soft: #dcfce7;
+  --success-text: #166534;
+  --warning: #d97706;
+  --warning-soft: #fffbeb;
+  --warning-text: #92400e;
+  --orange: #ea580c;
+  --danger-soft: #fef2f2;
+  --danger-text: #b91c1c;
+  --violet: #7c3aed;
+  --violet-soft: #ede9fe;
+  --violet-text: #5b21b6;
+  --marker: #075985;
+  --on-marker: #ffffff;
+  --ring: #38bdf8;
+  --scrim: rgb(15 23 42 / 44%);
+  --backdrop: rgb(15 23 42 / 72%);
+  --sh-xs: 0 1px 2px rgb(15 23 42 / 5%);
+  --sh-sm: 0 4px 14px rgb(15 23 42 / 7%);
+  --sh-lg: 0 22px 50px rgb(15 23 42 / 16%);
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1120;
+    --surface: #111827;
+    --surface-2: #1a2436;
+    --surface-3: #243041;
+    --text: #e2e8f0;
+    --muted: #a3b1c4;
+    --subtle: #8d9cb1;
+    --border: #243041;
+    --border-strong: #334155;
+    --primary: #38bdf8;
+    --primary-strong: #7dd3fc;
+    --primary-soft: #082f49;
+    --primary-border: #0c4a6e;
+    --on-primary: #06121f;
+    --success: #34d399;
+    --success-soft: #052e22;
+    --success-text: #6ee7b7;
+    --warning: #fbbf24;
+    --warning-soft: #2a1f0a;
+    --warning-text: #fde68a;
+    --orange: #fb923c;
+    --danger-soft: #2a1215;
+    --danger-text: #fca5a5;
+    --violet: #a78bfa;
+    --violet-soft: #231b3d;
+    --violet-text: #c4b5fd;
+    --marker: #38bdf8;
+    --on-marker: #06121f;
+    --ring: #7dd3fc;
+    --scrim: rgb(2 6 23 / 58%);
+    --backdrop: rgb(2 6 23 / 82%);
+    --sh-xs: 0 1px 2px rgb(0 0 0 / 30%);
+    --sh-sm: 0 4px 14px rgb(0 0 0 / 35%);
+    --sh-lg: 0 22px 50px rgb(0 0 0 / 55%);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface-2: #1a2436;
+  --surface-3: #243041;
+  --text: #e2e8f0;
+  --muted: #a3b1c4;
+  --subtle: #8d9cb1;
+  --border: #243041;
+  --border-strong: #334155;
+  --primary: #38bdf8;
+  --primary-strong: #7dd3fc;
+  --primary-soft: #082f49;
+  --primary-border: #0c4a6e;
+  --on-primary: #06121f;
+  --success: #34d399;
+  --success-soft: #052e22;
+  --success-text: #6ee7b7;
+  --warning: #fbbf24;
+  --warning-soft: #2a1f0a;
+  --warning-text: #fde68a;
+  --orange: #fb923c;
+  --danger-soft: #2a1215;
+  --danger-text: #fca5a5;
+  --violet: #a78bfa;
+  --violet-soft: #231b3d;
+  --violet-text: #c4b5fd;
+  --marker: #38bdf8;
+  --on-marker: #06121f;
+  --ring: #7dd3fc;
+  --scrim: rgb(2 6 23 / 58%);
+  --backdrop: rgb(2 6 23 / 82%);
+  --sh-xs: 0 1px 2px rgb(0 0 0 / 30%);
+  --sh-sm: 0 4px 14px rgb(0 0 0 / 35%);
+  --sh-lg: 0 22px 50px rgb(0 0 0 / 55%);
+  color-scheme: dark;
+}
+
+/* Tailwind tokens backed by the variables above. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-border: var(--primary-border);
+  --color-on-primary: var(--on-primary);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-text: var(--success-text);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-text: var(--warning-text);
+  --color-orange: var(--orange);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-violet-text: var(--violet-text);
+  --color-marker: var(--marker);
+  --color-on-marker: var(--on-marker);
+  --color-focus: var(--ring);
+  --color-scrim: var(--scrim);
+  --color-backdrop: var(--backdrop);
+  --shadow-xs: var(--sh-xs);
+  --shadow-sm: var(--sh-sm);
+  --shadow-lg: var(--sh-lg);
+}
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  --radius-sm: 7px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  /* Same widths as the original guide's max-width media queries, as min-width steps. */
+  --breakpoint-*: initial;
+  --breakpoint-xs: 521px;
+  --breakpoint-sm: 641px;
+  --breakpoint-md: 721px;
+  --breakpoint-tab: 761px;
+  --breakpoint-lg: 981px;
+  --breakpoint-xl: 1081px;
+}
+
+/* `en:` styles apply only while the page is in English. */
+@custom-variant en (&:where([data-lang="en"], [data-lang="en"] *));
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.7 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 30;
+    background: var(--surface);
+  }
+  a { color: var(--primary); text-underline-offset: 3px; }
+  a:hover { color: var(--primary-strong); }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  button { cursor: pointer; }
+  code, kbd { font-family: var(--font-mono); font-size: 0.86em; }
+  code { background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; padding: 0 5px; }
+  kbd {
+    display: inline-block; min-width: 1.6em; padding: 1px 6px;
+    border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: 6px;
+    background: var(--surface); color: var(--text); line-height: 1.5; text-align: center;
+  }
+  h1, h2, h3, h4 { line-height: 1.3; text-wrap: balance; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  dialog::backdrop { background: var(--backdrop); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
